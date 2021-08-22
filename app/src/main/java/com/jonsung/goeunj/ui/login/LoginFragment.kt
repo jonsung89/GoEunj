@@ -16,8 +16,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.jonsung.goeunj.MainActivity
 import com.jonsung.goeunj.R
 import com.jonsung.goeunj.databinding.FragmentLoginBinding
+
 
 class LoginFragment : Fragment() {
 
@@ -72,7 +74,7 @@ class LoginFragment : Fragment() {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                //handle error
+                // TODO: show snackbar error
             }
         }
     }
@@ -83,10 +85,11 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     //handle success
-                    val result = task.result.user
+                    (activity as MainActivity).apply { setProfileImage() }
                     findNavController().navigate(R.id.navigation_home)
                 } else {
                     //handle error
+                    // TODO: show snackbar error
                     Log.e(TAG, "firebaseAuthWithGoogle() failed")
                 }
             }

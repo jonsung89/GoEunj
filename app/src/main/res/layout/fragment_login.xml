@@ -20,17 +20,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-<!--        <Button-->
-<!--            style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--            android:id="@+id/googleSignInButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:icon=""-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/icon"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            />-->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_marginTop="15dp"
+            android:textFontWeight="800"
+            android:textSize="40sp"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/googleSignInButton"

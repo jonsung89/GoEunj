@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var actionBarMenu: Menu? = null
 
-    private var target : Target? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -72,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         setProfileImage()
     }
 
-    private fun setProfileImage() {
+    fun setProfileImage() {
         FirebaseUserManager.getCurrentUser()?.let {
             Glide.with(this)
                 .asBitmap().error(R.drawable.ic_baseline_account_circle_24)

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="../../Library/Android/sdk/platforms/android-30/data/res/layout/auto_complete_list.xml" value="0.17426545086119555" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.41944444444444445" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.7453703703703703" />
         <entry key="app/src/main/res/font/monserrat.xml" value="0.603125" />

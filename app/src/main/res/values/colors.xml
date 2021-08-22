@@ -7,6 +7,7 @@
     <color name="colorPrimaryText">#6a6e71</color>
 
     <color name="seashell">#f1f1f1</color>
+    <color name="jagged_ice">#c2e8e5</color>
 
     <!--  colorPrimary  -->
     <color name="half_baked_200">@color/colorPrimary</color>
