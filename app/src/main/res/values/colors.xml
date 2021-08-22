@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#92c9cb</color>
+    <color name="colorSecondary">#9492cb</color>
+    <color name="colorAlternate">#cb92c9</color>
+
+    <color name="colorPrimaryText">#6a6e71</color>
+
+    <color name="seashell">#f1f1f1</color>
+
+    <!--  colorPrimary  -->
+    <color name="half_baked_200">@color/colorPrimary</color>
+    <color name="half_baked_500">#379695</color>
+    <color name="half_baked_700">#2f7976</color>
+
+    <!--  colorSecondary  -->
+    <color name="blue_bell_200">@color/colorSecondary</color>
+    <color name="blue_bell_500">#005eaa</color>
+    <color name="blue_bell_700">#004c96</color>
+
+    <!--  third option: Triadic  -->
+    <color name="pastel_violet_200">@color/colorAlternate</color>
+    <color name="pastel_violet_500">#9b239a</color>
+    <color name="pastel_violet_700">#7c1a8d</color>
+
+
+    <!--  Cool gray  -->
+    <color name="fuscous_gray">#3c3d3c</color>
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

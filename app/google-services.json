@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874464853182",
+    "project_id": "goeunj-78aae",
+    "storage_bucket": "goeunj-78aae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874464853182:android:bed2695e393f61828d32ef",
+        "android_client_info": {
+          "package_name": "com.jonsung.goeunj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874464853182-jv4per7fh5v79ckteco9v693tss4brvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB4MoZxhJ9ie43xCfW4wuuTIpoOJ1cq64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874464853182-jv4per7fh5v79ckteco9v693tss4brvu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
