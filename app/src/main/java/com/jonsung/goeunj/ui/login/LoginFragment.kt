@@ -39,7 +39,6 @@ class LoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-
         auth = FirebaseAuth.getInstance()
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -72,9 +71,11 @@ class LoginFragment : Fragment() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
+                Log.d(TAG, "onActivityResult(): ${account.idToken}")
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // TODO: show snackbar error
+                Log.e(TAG, "onActivityResult(): ${e.message}")
             }
         }
     }
@@ -85,12 +86,13 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     //handle success
+                    Log.d(TAG, "firebaseAuthWithGoogle(): success - email: ${task.result.user?.email}")
                     (activity as MainActivity).apply { setProfileImage() }
                     findNavController().navigate(R.id.navigation_home)
                 } else {
                     //handle error
                     // TODO: show snackbar error
-                    Log.e(TAG, "firebaseAuthWithGoogle() failed")
+                    Log.e(TAG, "firebaseAuthWithGoogle(): failed")
                 }
             }
     }

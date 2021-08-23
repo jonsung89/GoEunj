@@ -11,6 +11,7 @@
 
     <!--  PREFERENCE KEYS  -->
     <string name="preference_selected_date_key">SELECTED_KEY</string>
+
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
