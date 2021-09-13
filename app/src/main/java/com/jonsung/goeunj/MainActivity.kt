@@ -12,11 +12,17 @@ import com.jonsung.goeunj.databinding.ActivityMainBinding
 import com.jonsung.goeunj.manager.FirebaseUserManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import android.view.Menu
+import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.firebase.auth.FirebaseAuth
+import com.jonsung.goeunj.data.map
+import com.jonsung.goeunj.data.mapFailure
+import com.jonsung.goeunj.data.model.WorkoutPlan
+import com.jonsung.goeunj.utils.Constants.FirebaseCollectionPath.WORKOUT_PLANS
 import com.squareup.picasso.Target
 
 
@@ -24,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var actionBarMenu: Menu? = null
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +64,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
         FirebaseUserManager.auth = FirebaseAuth.getInstance()
+
+        mainViewModel.workoutPlanFetchEvent.observe(this, { loadingState ->
+            loadingState
+                .map {
+                    mainViewModel.setWorkoutPlan(it)
+                }
+                .mapFailure { message, title ->
+                    Log.e("workoutPlanFetchEvent", message)
+                }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -68,6 +85,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setProfileImage()
+
+        // TODO: hardcoded eunji's userId - change back to `FirebaseUserManager.getCurrentUser()?.uid`
+        val userId = "Ic7ycswLEeWRXuzgmpsVsoemrcI3"
+        mainViewModel.fetchWorkoutPlansByUserId(userId)
     }
 
     fun setProfileImage() {
@@ -78,13 +99,9 @@ class MainActivity : AppCompatActivity() {
                 .load(it.photoUrl)
                 .into(object : SimpleTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        actionBarMenu?.findItem(R.id.action_profile)?.let { menuItem ->
-                            menuItem.setIcon(BitmapDrawable(resources, resource))
-                        }
+                        actionBarMenu?.findItem(R.id.action_profile)?.icon = BitmapDrawable(resources, resource)
                     }
                 })
         }
-
     }
-
 }

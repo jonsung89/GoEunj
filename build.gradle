@@ -9,8 +9,12 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
         classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
 
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5") // https://developer.android.com/guide/navigation/navigation-pass-data
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
     }
 }
 

@@ -7,26 +7,43 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.jonsung.goeunj.MainViewModel
 import com.jonsung.goeunj.R
+import com.jonsung.goeunj.data.map
+import com.jonsung.goeunj.data.mapFailure
 import com.jonsung.goeunj.databinding.FragmentWorkoutBinding
-import com.jonsung.goeunj.utils.convertDateToString
-import com.jonsung.goeunj.utils.convertStringToDate
-import com.jonsung.goeunj.utils.getStringSharedPreferences
-import com.jonsung.goeunj.utils.setStringSharedPreferences
+import com.jonsung.goeunj.ui.home.HomeFragment
+import com.jonsung.goeunj.utils.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
+
 class WorkoutPlanFragment : Fragment() {
+
+    companion object {
+        private const val TAG = "fragment_workout_plan"
+    }
 
     private lateinit var layout: FragmentWorkoutBinding
     private lateinit var workoutPlanViewModel: WorkoutPlanViewModel
     private lateinit var workoutAdapter: WorkoutPlanAdapter
+//    private val mainViewModel: MainViewModel by activityViewModels()
+
+    private var argSelectedDate: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            argSelectedDate = it.getString("selectedWorkoutDate")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +54,9 @@ class WorkoutPlanFragment : Fragment() {
 
         workoutPlanViewModel = ViewModelProvider(this).get(WorkoutPlanViewModel::class.java)
 
-        workoutAdapter = WorkoutPlanAdapter()
+        workoutAdapter = WorkoutPlanAdapter(requireContext()) {
+            onWorkoutClicked()
+        }
         layout.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = workoutAdapter
@@ -69,6 +88,38 @@ class WorkoutPlanFragment : Fragment() {
 
                 activity?.setStringSharedPreferences(R.string.preference_selected_date_key, date)
             })
+
+            // TODO: hardcoded eunji's userId - change back to `FirebaseUserManager.getCurrentUser()?.uid`
+            val userId = "Ic7ycswLEeWRXuzgmpsVsoemrcI3"
+            fetchWorkoutPlansByUserId(userId)
+
+            workoutPlanFetchEvent.observe(viewLifecycleOwner, { loadingState ->
+                loadingState
+                    .map { plan ->
+                        plan.goals?.let { goals ->
+                            goals.firstOrNull { it.startWeek?.isDateInCurrentWeek() == true }?.let {
+                                workoutPlanViewModel.setWorkoutPlansByWeek(it)
+                            } ?: run {
+                                Log.e(TAG, "workoutPlan not found")
+                            }
+                        }
+                    }
+                    .mapFailure { message, title -> Log.e("workoutPlanFetchEvent", message) }
+            })
+
+            workoutPlansByWeekEvent.observe(viewLifecycleOwner, {
+                it[selectedDate.value]?.muscleGroup?.let { muscleGroup ->
+                    workoutPlanViewModel.fetchWorkoutsByGroupByUserId(userId, muscleGroup)
+                }
+            })
+
+            workoutsByGroupEvent.observe(viewLifecycleOwner, { loadingState ->
+                loadingState
+                    .map {
+                        workoutAdapter.setWorkoutList(it.workouts ?: listOf())
+                    }
+                    .mapFailure { message, title -> Log.e("workoutsByGroupEvent", message) }
+            })
         }
 
         return layout.root
@@ -87,7 +138,15 @@ class WorkoutPlanFragment : Fragment() {
         }
     }
 
+
+
+    private fun onWorkoutClicked() {
+    }
+
     private fun getDefaultSelectedDate(): Date {
+        if (!argSelectedDate.isNullOrEmpty()) {
+            return argSelectedDate?.convertDefaultStringToDate() ?: Date()
+        }
         val defaultDate = activity?.getStringSharedPreferences(R.string.preference_selected_date_key)
         return when {
             defaultDate.isNullOrEmpty() -> Date()
@@ -117,8 +176,8 @@ class WorkoutPlanFragment : Fragment() {
     }
 
     private fun displayWorkoutsForSelectedDate(date: String) {
-        workoutPlanViewModel.weeklyWorkoutPlans[date]?.let { workouts ->
-            workoutAdapter.setWorkouts(workouts)
-        }
+//        workoutPlanViewModel.weeklyWorkoutPlans[date]?.let { workouts ->
+//            workoutAdapter.setWorkouts(workouts)
+//        }
     }
 }

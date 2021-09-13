@@ -11,20 +11,58 @@
         android:label="@string/tab_login"
         tools:layout="@layout/fragment_login">
 
-
     </fragment>
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.jonsung.goeunj.ui.home.HomeFragment"
         android:label="@string/tab_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_set_goal"
+            app:destination="@id/navigation_set_goal" />
+    </fragment>
+
+    <!--  Set Goal screen  -->
+    <dialog
+        android:id="@+id/navigation_set_goal"
+        android:name="com.jonsung.goeunj.ui.goal_setter.GoalSetterFragment"
+        android:label="@string/tab_set_goal"
+        tools:layout="@layout/fragment_goal_setter" >
+        <action
+            android:id="@+id/action_navigation_set_goal_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/navigation_detail_workout"
+        android:name="com.jonsung.goeunj.ui.workout_plan.WorkoutDetailDialogFragment"
+        android:label="@string/tab_detail_workout"
+        tools:layout="@layout/fragment_workout_detail_dialog">
+
+        <argument
+            android:name="detailWorkoutData"
+            app:argType="com.jonsung.goeunj.data.model.WorkoutData" />
+
+        <!-- Action back to destination which launched into this in_game_nav_graph-->
+        <action android:id="@+id/action_pop_out_of_game"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_workout"
         android:name="com.jonsung.goeunj.ui.workout_plan.WorkoutPlanFragment"
         android:label="@string/tab_workout"
-        tools:layout="@layout/fragment_workout" />
+        tools:layout="@layout/fragment_workout">
+
+        <argument
+            android:name="selectedWorkoutDate"
+            app:argType="string"
+            android:defaultValue="" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_progress"

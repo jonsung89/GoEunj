@@ -50,11 +50,11 @@
                 app:layout_constraintStart_toEndOf="@id/border"
                 app:layout_constraintEnd_toStartOf="@id/chevron"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/sets"
+                app:layout_constraintBottom_toTopOf="@id/setsAndReps"
                 />
 
             <TextView
-                android:id="@+id/sets"
+                android:id="@+id/setsAndReps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

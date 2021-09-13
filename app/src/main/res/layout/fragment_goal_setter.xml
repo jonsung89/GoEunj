@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.goal_setter.GoalSetterFragment">
+
+        <View
+            android:id="@+id/spacer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="@string/tab_set_goal"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textFontWeight="600"
+            app:layout_constraintStart_toEndOf="@id/spacer"
+            app:layout_constraintEnd_toStartOf="@id/closeButton"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <!-- Workout -->
+        <TextView
+            android:id="@+id/selectWorkoutDayHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/select_workout_day_header"
+            android:textSize="16sp"
+            android:textFontWeight="800"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/selectedDayCount"
+            app:layout_constraintBottom_toTopOf="@id/selectCardioDayHeader"
+            />
+
+        <TextView
+            android:id="@+id/selectedDayCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="16sp"
+            android:textFontWeight="800"
+            tools:text="1/4"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toEndOf="@id/selectWorkoutDayHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/selectWorkoutDayHeader"
+            app:layout_constraintBottom_toBottomOf="@id/selectWorkoutDayHeader"
+            />
+
+        <Button
+            android:id="@+id/editWorkoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/edit"
+            android:textSize="12sp"
+            android:backgroundTint="@color/jagged_ice"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/confirmWorkoutButton"
+            app:layout_constraintTop_toTopOf="@id/confirmWorkoutButton"
+            app:layout_constraintBottom_toBottomOf="@id/confirmWorkoutButton"
+            />
+
+        <Button
+            android:id="@+id/confirmWorkoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/confirm"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:enabled="false"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectedDayCount"
+            app:layout_constraintBottom_toTopOf="@id/selectCardioDayHeader"
+            />
+
+        <!-- Cardio -->
+        <TextView
+            android:id="@+id/selectCardioDayHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/select_cardio_day_header"
+            android:textSize="16sp"
+            android:textFontWeight="800"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@id/confirmWorkoutButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/weeklyCalendarCard"
+            />
+
+        <TextView
+            android:id="@+id/selectedCardioDayCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="16sp"
+            android:textFontWeight="800"
+            tools:text="1/7"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toEndOf="@id/selectCardioDayHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/selectCardioDayHeader"
+            app:layout_constraintBottom_toBottomOf="@id/selectCardioDayHeader"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/cardioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="selectedCardioDayCount,selectCardioDayHeader"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/weeklyCalendarCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            app:cardBackgroundColor="@color/jagged_ice"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/selectCardioDayHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <include
+                android:id="@+id/weeklyCalendar"
+                layout="@layout/layout_weekly_workout_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:backgroundTint="@color/fuscous_gray"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:enabled="false"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintTop_toBottomOf="@id/weeklyCalendarCard"
+            app:layout_constraintBottom_toTopOf="@id/caption"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textFontWeight="600"
+            android:text="@string/submit_goal_sub_header"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

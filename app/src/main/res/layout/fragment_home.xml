@@ -4,175 +4,269 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/seashell"
-        tools:context=".ui.home.HomeFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/greetingHi"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:textSize="16sp"
-            android:textFontWeight="600"
-            tools:text="Hi, Eunji"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/greetingHi"
-            />
+            android:background="@color/seashell"
+            android:animateLayoutChanges="true"
+            tools:context=".ui.home.HomeFragment">
 
-        <TextView
-            android:id="@+id/welcomeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textFontWeight="700"
-            android:textSize="20sp"
-            android:text="@string/welcome_back_text"
-            app:layout_constraintStart_toStartOf="@id/greetingHi"
-            app:layout_constraintTop_toBottomOf="@id/greetingHi"
-            tools:text="Welcome back" />
+            <TextView
+                android:id="@+id/greetingHi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="16sp"
+                android:textFontWeight="600"
+                tools:text="Hi, Eunji"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/greetingHi"
+                />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/workoutButton"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/fuscous_gray"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/welcomeText"
-            >
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textFontWeight="700"
+                android:textSize="20sp"
+                android:text="@string/welcome_back_text"
+                app:layout_constraintStart_toStartOf="@id/greetingHi"
+                app:layout_constraintTop_toBottomOf="@id/greetingHi"
+                tools:text="Welcome back" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/weeklyCalendarCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:cardBackgroundColor="@color/jagged_ice"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintTop_toBottomOf="@id/welcomeText"
+                app:layout_constraintBottom_toTopOf="@id/workoutButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                <ImageView
-                    android:id="@+id/weightIcon"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:rotation="135"
-                    android:src="@drawable/ic_weight"
-                    app:tint="@color/colorPrimary"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/todayWorkoutText"
-                    />
-
-                <TextView
-                    android:id="@+id/todayWorkoutText"
-                    android:layout_width="wrap_content"
+                <include
+                    android:id="@+id/weeklyCalendar"
+                    layout="@layout/layout_weekly_workout_plan"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:gravity="center"
-                    android:text="@string/today_workout_header"
-                    android:textColor="?attr/colorSurface"
-                    android:textFontWeight="700"
-                    android:textSize="18sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/weightIcon"
                     />
 
-                <ImageView
-                    android:id="@+id/chevron"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_baseline_chevron_right_24"
-                    app:tint="@color/colorPrimary"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    />
+            </androidx.cardview.widget.CardView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/setGoalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_goal_button_text"
+                android:visibility="gone"
+                android:layout_margin="20dp"
+                tools:visibility="visible"
+                app:layout_goneMarginBottom="20dp"
+                app:layout_constraintTop_toBottomOf="@id/welcomeText"
+                app:layout_constraintBottom_toTopOf="@id/progressBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
-        </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/planBeingReviewedGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="progressBar,planBeingReviewedText"
+                />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/progressButton"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/fuscous_gray"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/workoutButton"
-            >
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/setGoalButton"
+                app:layout_constraintBottom_toTopOf="@id/workoutButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/planBeingReviewedText"
+                />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+            <TextView
+                android:id="@+id/planBeingReviewedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/goal_submitted_text"
+                app:layout_constraintTop_toTopOf="@id/progressBar"
+                app:layout_constraintBottom_toBottomOf="@id/progressBar"
+                app:layout_constraintStart_toEndOf="@id/progressBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
-                <ImageView
-                    android:id="@+id/flagIcon"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_flag"
-                    android:padding="3dp"
-                    app:tint="@color/colorPrimary"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/progressText"
-                    />
+            <!--    Quick workout view    -->
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/quickViewCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weeklyCalendarCard"
+                app:layout_constraintBottom_toTopOf="@id/workoutButton"
+                />
 
-                <TextView
-                    android:id="@+id/progressText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:gravity="center"
-                    android:text="@string/check_your_progres"
-                    android:textColor="?attr/colorSurface"
-                    android:textFontWeight="700"
-                    android:textSize="18sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/flagIcon"
-                    />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/workoutButton"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                app:layout_goneMarginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/fuscous_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/quickViewCardView"
+                >
 
-                <ImageView
-                    android:id="@+id/chevron2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_baseline_chevron_right_24"
-                    app:tint="@color/colorPrimary"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/weightIcon"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:rotation="135"
+                        android:src="@drawable/ic_weight"
+                        app:tint="@color/colorPrimary"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/todayWorkoutText"
+                        />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/todayWorkoutText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center"
+                        android:text="@string/today_workout_header"
+                        android:textColor="?attr/colorSurface"
+                        android:textFontWeight="700"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/weightIcon"
+                        />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/chevron"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_baseline_chevron_right_24"
+                        app:tint="@color/colorPrimary"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/progressButton"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/fuscous_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workoutButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <ImageView
+                        android:id="@+id/flagIcon"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_flag"
+                        android:padding="3dp"
+                        app:tint="@color/colorPrimary"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/progressText"
+                        />
+
+                    <TextView
+                        android:id="@+id/progressText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center"
+                        android:text="@string/check_your_progres"
+                        android:textColor="?attr/colorSurface"
+                        android:textFontWeight="700"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/flagIcon"
+                        />
+
+                    <ImageView
+                        android:id="@+id/chevron2"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_baseline_chevron_right_24"
+                        app:tint="@color/colorPrimary"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

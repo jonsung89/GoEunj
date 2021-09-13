@@ -6,8 +6,10 @@
     <string name="tab_workout">Workout</string>
     <string name="tab_progress">Progress</string>
     <string name="tab_login">Login</string>
+    <string name="tab_detail_workout">Detail Workout</string>
+    <string name="tab_set_goal">Set Goals</string>
     <string name="show_workout_calendar_button_text">Select Different Date</string>
-    <string name="workout_fragment_header">TODAY\'S ROUTINE</string>
+    <string name="workout_fragment_header">WORKOUTS</string>
 
     <!--  PREFERENCE KEYS  -->
     <string name="preference_selected_date_key">SELECTED_KEY</string>
@@ -27,4 +29,21 @@
     <string name="welcome_back_text">Welcome back!</string>
     <string name="today_workout_header">Today\'s Workout</string>
     <string name="check_your_progres">Check Your Progress</string>
+
+    <!--  Quick View Workout View  -->
+    <string name="workout_sets">%s sets</string>
+    <string name="workout_reps">%s reps</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="set_goal_button_text">Set this week\'s goal</string>
+    <string name="select_workout_day_header">Choose workout days</string>
+    <string name="select_cardio_day_header">Choose cardio days</string>
+    <string name="selectedDaysCount">%d/%d</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit">Edit</string>
+    <string name="done">Done</string>
+    <string name="submit">Submit</string>
+    <string name="submit_goal_sub_header">** Submit your goal for Jon to review. He\'ll review then build you a workout plan for this week!</string>
+    <string name="goal_submitted_text">Your goal is being reviewed!</string>
 </resources>
